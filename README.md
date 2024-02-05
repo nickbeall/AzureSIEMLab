@@ -119,11 +119,73 @@ Back on the Virtual Machine, open wf.msc. Click "Windows Defender Firewall Prope
 Grab the PowerShell script in this repository that we will use for logging access attempts (LogExporter.ps1). This script is an edit of a script originally made by YouTuber Josh Madakor, the creator of this home lab. Paste it into PowerShell ISE on your Virtual Machine and save it to the Desktop. <br/>
  <img src="https://i.imgur.com/OK9UJwO.png" alt="PowerShell Setup Pt1"/><br/>
  <img src="https://i.imgur.com/n4l6tlW.png" alt="PowerShell Setup Pt2"/><br/>
- Visit ipgeolocation.io and sign up for an account. Once logged in, visi the dashboard to find your API key and paste it into the script. Start the script. 
+ Visit ipgeolocation.io and sign up for an account. Once logged in, visi the dashboard to find your API key and paste it into the script. Start the script. <br/>
  <img src="https://i.imgur.com/ErSJke6.png" alt="PowerShell Setup Pt3"/><br/>
+ <img src="https://i.imgur.com/z139bw1.png" alt="PowerShell Setup Pt4"/><br/>
 </p>
 
+<hr>
 
+<h4 align="center">Create The Custom Log:</h4> 
+<p align="center">
+Navigate back to the Log Analysis Workspace page. Select your Log Analysis Workspace. In the left menu select "Tables", click "Create" and "New Custom Log (MMA Based)". <br/>
+ <img src="https://i.imgur.com/1tEbigo.png" height="80%" width="80%" alt="Custom Log Pt1"/><br/>
+ On the Virtual Machine, open the log file found at C:\ProgramData\failed_rdp.log. Copy the text and paste it into a new text document on your PC and save it to the Desktop. <br/>
+ <img src="https://i.imgur.com/VvC2a2X.png" alt="Custom Log Pt2"/><br/>
+ <img src="https://i.imgur.com/5fwYE0R.png" alt="Custom Log Pt3"/><br/>
+ Upload the custom log you just made on your PC as a sample. Click "Next" until you reach Collection Paths. <br/>
+ <img src="https://i.imgur.com/Q6lWTDP.png" height="80%" width="80%" alt="Custom Log Pt4"/><br/>
+ Select "Windows" for the type and set the path to "C:\ProgramData\failed_rdp.log". Click "Next". Name the custom log "FAILED_RDP_WITH_GEO".<br/>
+ <img src="https://i.imgur.com/kA6zwr8.png" alt="Custom Log Pt5"/><br/>
+ Navigate to Logs in the left menu and confirm that your custom log and the VM are connected. This can take some time to happen, upwards of 30 minutes. You can confirm by pasting the following into the query and selecting "Run". <br/>
+
+ 
+ ```
+FAILED_RDP_WITH_GEO_CL
+| extend CSVFields  = split(RawData, ',') 
+| extend timestamp_CF  = todatetime(CSVFields[8]) 
+| extend label_CF    = tostring(CSVFields[7])
+| extend country_CF = tostring(CSVFields[6])
+| extend state_CF = tostring(CSVFields[5])
+| extend source_CF = tostring(CSVFields[4])
+| extend user_CF = tostring(CSVFields[3])
+| extend dest_CF = tostring(CSVFields[2])
+| extend longitude_CF = tostring(CSVFields[1])
+| extend latitude_CF = tostring(CSVFields[0])
+| summarize event_count=count() by source_CF, tostring(latitude_CF), tostring(longitude_CF), country_CF, label_CF, dest_CF
+```
+  </p>
+
+ <hr>
+
+<h4 align="center">Setting Up Map in Sentinel:</h4> 
+<p align="center">
+Navigate back to Microsoft Sentinel and click your Log Analysis Workspace. Click "Workbook", add a new one, and click "edit". Remove the default widgets by clicking the three dots.<br/>
+<img src="https://i.imgur.com/6vShvjk.png" height="80%" width="80%" alt="Sentinel Map Pt1"/><br/>
+Click "Add" and select "Add query". <br/>
+<img src="https://i.imgur.com/leYA0t3.png" height="80%" width="80%" alt="Sentinel Map Pt2"/><br/>
+Paste the following code into the query. <br/>
+
+```
+FAILED_RDP_WITH_GEO_CL
+| extend CSVFields  = split(RawData, ',') 
+| extend timestamp_CF  = todatetime(CSVFields[8]) 
+| extend label_CF    = tostring(CSVFields[7])
+| extend country_CF = tostring(CSVFields[6])
+| extend state_CF = tostring(CSVFields[5])
+| extend source_CF = tostring(CSVFields[4])
+| extend user_CF = tostring(CSVFields[3])
+| extend dest_CF = tostring(CSVFields[2])
+| extend longitude_CF = tostring(CSVFields[1])
+| extend latitude_CF = tostring(CSVFields[0])
+| summarize event_count=count() by source_CF, tostring(latitude_CF), tostring(longitude_CF), country_CF, label_CF, dest_CF
+| where dest_CF != "destinationhost:samplehost"
+```
+Set Visualization to "Map". Set latitude to latitude_CF. Set longitude to longitude_CF. Set Metric Label to label_CF. Save the query named "Failed RDP World Map" in the HoneypotLab Resource Group on West US3.<br/>
+<img src="https://i.imgur.com/T8BRidq.png" height="80%" width="80%" alt="Sentinel Map Pt3"/><br/>
+<img src="https://i.imgur.com/CtGw1yU.png" height="80%" width="80%" alt="Sentinel Map Pt4"/><br/>
+After running for a little while your map should be populated with where attempted attacks are located. Enjoy!
+<img src="https://i.imgur.com/fLaCqXS.png" height="80%" width="80%" alt="Sentinel Map Pt5"/><br/>
 
 <!--
  ```diff
