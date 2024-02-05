@@ -55,6 +55,41 @@ Navigate to the Log Analytics Workspaces page. Click "Create" in the top left. <
  Set resource group to "HoneypotLab". Name the new Log Analytics Workspace "law-honeypot1". Set region to "West US 3". Click "Review+Create". <br/>
  <img src="https://i.imgur.com/wFGAw3Z.png" alt="LAW Creation Pt2"/>
 </p>
+
+<hr>
+
+<h4 align="center">Configure Microsoft Defender:</h4> 
+<p align="center">
+Navigate to Microsoft Defender for Cloud. <br/>
+<img src="https://i.imgur.com/bgwDo8F.png" alt="Defender Config Pt1"/>
+ Click "Environment Settings" in the left menu.  <br/>
+ <img src="https://i.imgur.com/W1Ltio1.png" alt="Defender Config Pt2"/>
+ Expand your Azure Subscription to find the Log Analytics Workspace we created and open it.  <br/>
+ <img src="https://i.imgur.com/9IMgjI4.png" alt="Defender Config Pt3"/>
+ Turn servers on and leave SQL servers off. Click save in the top left. Select "Data Collection" in the left menu and set to "All Events". Click Save in the top left.  <br/>
+ <img src="https://i.imgur.com/8vxnYT2.png" alt="Defender Config Pt4"/>
+ <img src="https://i.imgur.com/ZVubHVU.png" alt="Defender Config Pt5"/>
+</p>
+
+<hr>
+
+<h4 align="center">Connect Log Analytics Workspace to the Virtual Machine:</h4> 
+<p align="center">
+Navigate back to the Log Analytics Workspaces page. Click our Log Analytic Workspace. Click "Virtual Machines (deprecated)" in the left menu. Click "Connect" in the top left. <br/>
+ <img src="https://i.imgur.com/VfHudgx.png" alt="Connect LAW to VM Pt1"/>
+ <img src="https://i.imgur.com/0WKRbrl.png" alt="Connect LAW to VM Pt2"/>
+</p>
+
+<hr>
+
+<h4 align="center">Set Up Sentinel:</h4> 
+<p align="center">
+In a new tab, visit portal.azure.com. Navigate to the Microsoft Sentinel page. Click "Create".<br/>
+ <img src="https://i.imgur.com/CTd4JYP.png" alt="Sentinel Pt1"/>
+ Select our Log Analytics Workspace and Click "ADD" in the bottom left. <br/>
+ <img src="https://i.imgur.com/kNILkS8.png" alt="Sentinel Pt2"/>
+
+
 <!--
  ```diff
 - text in red
