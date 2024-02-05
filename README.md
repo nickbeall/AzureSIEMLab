@@ -41,7 +41,7 @@ In this lab I set up Azure Sentinel (SIEM) and connect it to a virtual machine t
  Delete the inbound rule and create and new one with the below settings. <br/>
  <img src="https://i.imgur.com/ja39a3Z.png" alt="VM Configuration Pt4"/><br/>
  Click "Review+Create" and "Create" on the page following that. This will begin the process of deploying your Virtual Machine. <br />
- <img src="https://i.imgur.com/npijgic.png" alt="VM Configuration Pt5"/><br/>
+ <img src="https://i.imgur.com/npijgic.png" height="80%" width="80%" alt="VM Configuration Pt5"/><br/>
 <br />
 <br />
 </p>
@@ -51,9 +51,9 @@ In this lab I set up Azure Sentinel (SIEM) and connect it to a virtual machine t
 <h4 align="center">Set Up Log Analytics Workspace:</h4> 
 <p align="center">
 Navigate to the Log Analytics Workspaces page. Click "Create" in the top left. <br/>
-<img src="https://i.imgur.com/amVBUHV.png" alt="LAW Creation Pt1"/>
+<img src="https://i.imgur.com/amVBUHV.png" height="80%" width="80%" alt="LAW Creation Pt1"/><br/>
  Set resource group to "HoneypotLab". Name the new Log Analytics Workspace "law-honeypot1". Set region to "West US 3". Click "Review+Create". <br/>
- <img src="https://i.imgur.com/wFGAw3Z.png" alt="LAW Creation Pt2"/>
+ <img src="https://i.imgur.com/wFGAw3Z.png" height="80%" width="80%" alt="LAW Creation Pt2"/><br/>
 </p>
 
 <hr>
@@ -61,14 +61,14 @@ Navigate to the Log Analytics Workspaces page. Click "Create" in the top left. <
 <h4 align="center">Configure Microsoft Defender:</h4> 
 <p align="center">
 Navigate to Microsoft Defender for Cloud. <br/>
-<img src="https://i.imgur.com/bgwDo8F.png" alt="Defender Config Pt1"/>
+<img src="https://i.imgur.com/bgwDo8F.png" height="80%" width="80%" alt="Defender Config Pt1"/><br/>
  Click "Environment Settings" in the left menu.  <br/>
- <img src="https://i.imgur.com/W1Ltio1.png" alt="Defender Config Pt2"/>
+ <img src="https://i.imgur.com/W1Ltio1.png" height="80%" width="80%" alt="Defender Config Pt2"/><br/>
  Expand your Azure Subscription to find the Log Analytics Workspace we created and open it.  <br/>
- <img src="https://i.imgur.com/9IMgjI4.png" alt="Defender Config Pt3"/>
+ <img src="https://i.imgur.com/9IMgjI4.png" height="80%" width="80%" alt="Defender Config Pt3"/><br/>
  Turn servers on and leave SQL servers off. Click save in the top left. Select "Data Collection" in the left menu and set to "All Events". Click Save in the top left.  <br/>
- <img src="https://i.imgur.com/8vxnYT2.png" alt="Defender Config Pt4"/>
- <img src="https://i.imgur.com/ZVubHVU.png" alt="Defender Config Pt5"/>
+ <img src="https://i.imgur.com/8vxnYT2.png" height="80%" width="80%" alt="Defender Config Pt4"/>
+ <img src="https://i.imgur.com/ZVubHVU.png" height="80%" width="80%" alt="Defender Config Pt5"/>
 </p>
 
 <hr>
@@ -76,8 +76,8 @@ Navigate to Microsoft Defender for Cloud. <br/>
 <h4 align="center">Connect Log Analytics Workspace to the Virtual Machine:</h4> 
 <p align="center">
 Navigate back to the Log Analytics Workspaces page. Click our Log Analytic Workspace. Click "Virtual Machines (deprecated)" in the left menu. Click "Connect" in the top left. <br/>
- <img src="https://i.imgur.com/VfHudgx.png" alt="Connect LAW to VM Pt1"/>
- <img src="https://i.imgur.com/0WKRbrl.png" alt="Connect LAW to VM Pt2"/>
+ <img src="https://i.imgur.com/VfHudgx.png" height="80%" width="80%" alt="Connect LAW to VM Pt1"/>
+ <img src="https://i.imgur.com/0WKRbrl.png" height="80%" width="80%" alt="Connect LAW to VM Pt2"/>
 </p>
 
 <hr>
@@ -85,9 +85,37 @@ Navigate back to the Log Analytics Workspaces page. Click our Log Analytic Works
 <h4 align="center">Set Up Sentinel:</h4> 
 <p align="center">
 In a new tab, visit portal.azure.com. Navigate to the Microsoft Sentinel page. Click "Create".<br/>
- <img src="https://i.imgur.com/CTd4JYP.png" alt="Sentinel Pt1"/>
+ <img src="https://i.imgur.com/CTd4JYP.png" height="80%" width="80%" alt="Sentinel Pt1"/><br/><br/>
  Select our Log Analytics Workspace and Click "ADD" in the bottom left. <br/>
- <img src="https://i.imgur.com/kNILkS8.png" alt="Sentinel Pt2"/>
+ <img src="https://i.imgur.com/kNILkS8.png" height="80%" width="80%" alt="Sentinel Pt2"/><br/>
+</p>
+
+<hr>
+
+<h4 align="center">Login to the Virtual Machine:</h4> 
+<p align="center">
+Navigate to the Virtual Machine page. Click our VM to view information. Copy the public IP address. <br/>
+<img src="https://i.imgur.com/CJKv0zi.png" height="80%" width="80%" alt="VM Access Pt1"/><br/>
+Open Remote Desktop Connection on your PC. Paste the IP address in and click connect. <br/>
+<img src="https://i.imgur.com/8agC3gd.png" alt="VM Access Pt2"/><br/>
+Select "More choices" and "use a different account". Use the username and password we select earlier when setting up the virtual machine. <br/>
+<img src="https://i.imgur.com/kHzs6SZ.png" alt="VM Access Pt3"/><br/>
+Accept the certificate warning. <br/>
+<img src="https://i.imgur.com/pIx0XLl.png" alt="VM Access Pt4"/><br/>
+Turn all settings off and click accept. <br/>
+<img src="https://i.imgur.com/gaYW4h6.png" alt="VM Access Pt5"/><br/>
+On your PC setup a perpetual ping of the VM in command prompt. <br/>
+<img src="https://i.imgur.com/ZIBnkIC.png" alt="VM Access Pt6"/><br/>
+Back on the Virtual Machine, open wf.msc. Click "Windows Defender Firewall Properties", turn off Firewall State in Domain, Private, and Public Profiles. You should now see the pings on your PC being returned.<br/>
+<img src="https://i.imgur.com/jizfBkG.png" alt="VM Access Pt7"/><br/>
+<img src="https://i.imgur.com/o0iDu6L.png" alt="VM Access Pt8"/><br/>
+<img src="https://i.imgur.com/2iYlw7S.png" alt="VM Access Pt9"/><br/>
+</p>
+
+<hr>
+
+<h4 align="center">Setting Up PowerShell Script:</h4> 
+<p align="center">
 
 
 <!--
