@@ -1,4 +1,4 @@
-<h1>Active Directory Home Lab</h1>
+<h1>Azure Honey Pot With Sentinel Map Tracking</h1>
 
 <!-- ### [YouTube Demonstration](https://youtu.be/7eJexJVCqJo)-->
 
@@ -10,18 +10,19 @@ In this lab I set up Azure Sentinel (SIEM) and connect it to a virtual machine t
 <h2>Languages and Utilities Used</h2>
 
 - <b>PowerShell</b> 
-- <b>Windows Account Manager</b>
-- <b>VirtualBox</b>
+- <b>Microsoft Azure</b>
+- <b>Microsoft Sentinel</b>
 
 <h2>Environments Used </h2>
 
-- <b>Windows 10</b> (21H2)
+- <b>Windows 10</b>
 
-<h2>Program walk-through:</h2>
+<h2>Lab Walk-Through:</h2>
 
 <p align="center">
-Launch the utility: <br/>
-<img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+Create a Virtual Machine: <br/>
+ Search "Virtual Machine" in the search bar to visit the Virtual Machine page. Click "Create" in the top left and select "Azure Virtual Machine".
+<img src="https://i.imgur.com/CXbJaKZ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 Select the disk:  <br/>
