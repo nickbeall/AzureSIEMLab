@@ -3,7 +3,7 @@
 <!-- ### [YouTube Demonstration](https://youtu.be/7eJexJVCqJo)-->
 
 <h2>Description</h2>
-TBD
+In this lab I set up Azure Sentinel (SIEM) and connect it to a virtual machine that has been configured to be a honey pot. Live attacks are observered (RDP Brute Force) from around the world. Using a custom PowerShell script, the attackers geolocation information is gathered and plot on the Azure Sentinel map. 
 <br />
 
 
