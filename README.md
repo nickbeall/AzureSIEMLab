@@ -116,6 +116,13 @@ Back on the Virtual Machine, open wf.msc. Click "Windows Defender Firewall Prope
 
 <h4 align="center">Setting Up PowerShell Script:</h4> 
 <p align="center">
+Grab the PowerShell script in this repository that we will use for logging access attempts (LogExporter.ps1). This script is an edit of a script originally made by YouTuber Josh Madakor, the creator of this home lab. Paste it into PowerShell ISE on your Virtual Machine and save it to the Desktop. <br/>
+ <img src="https://i.imgur.com/OK9UJwO.png" alt="PowerShell Setup Pt1"/><br/>
+ <img src="https://i.imgur.com/n4l6tlW.png" alt="PowerShell Setup Pt2"/><br/>
+ Visit ipgeolocation.io and sign up for an account. Once logged in, visi the dashboard to find your API key and paste it into the script. Start the script. 
+ <img src="https://i.imgur.com/ErSJke6.png" alt="PowerShell Setup Pt3"/><br/>
+</p>
+
 
 
 <!--
