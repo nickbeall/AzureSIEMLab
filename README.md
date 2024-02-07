@@ -54,6 +54,8 @@ Navigate to the Log Analytics Workspaces page. Click "Create" in the top left. <
 <img src="https://i.imgur.com/amVBUHV.png" height="80%" width="80%" alt="LAW Creation Pt1"/><br/>
  Set resource group to "HoneypotLab". Name the new Log Analytics Workspace "law-honeypot1". Set region to "West US 3". Click "Review+Create". <br/>
  <img src="https://i.imgur.com/wFGAw3Z.png" height="80%" width="80%" alt="LAW Creation Pt2"/><br/>
+ <br />
+<br />
 </p>
 
 <hr>
@@ -69,6 +71,8 @@ Navigate to Microsoft Defender for Cloud. <br/>
  Turn servers on and leave SQL servers off. Click save in the top left. Select "Data Collection" in the left menu and set to "All Events". Click Save in the top left.  <br/>
  <img src="https://i.imgur.com/8vxnYT2.png" height="80%" width="80%" alt="Defender Config Pt4"/>
  <img src="https://i.imgur.com/ZVubHVU.png" height="80%" width="80%" alt="Defender Config Pt5"/>
+ <br />
+<br />
 </p>
 
 <hr>
@@ -78,6 +82,8 @@ Navigate to Microsoft Defender for Cloud. <br/>
 Navigate back to the Log Analytics Workspaces page. Click our Log Analytic Workspace. Click "Virtual Machines (deprecated)" in the left menu. Click "Connect" in the top left. <br/>
  <img src="https://i.imgur.com/VfHudgx.png" height="80%" width="80%" alt="Connect LAW to VM Pt1"/>
  <img src="https://i.imgur.com/0WKRbrl.png" height="80%" width="80%" alt="Connect LAW to VM Pt2"/>
+ <br />
+<br />
 </p>
 
 <hr>
@@ -88,6 +94,8 @@ In a new tab, visit portal.azure.com. Navigate to the Microsoft Sentinel page. C
  <img src="https://i.imgur.com/CTd4JYP.png" height="80%" width="80%" alt="Sentinel Pt1"/><br/><br/>
  Select our Log Analytics Workspace and Click "ADD" in the bottom left. <br/>
  <img src="https://i.imgur.com/kNILkS8.png" height="80%" width="80%" alt="Sentinel Pt2"/><br/>
+ <br />
+<br />
 </p>
 
 <hr>
@@ -110,6 +118,8 @@ Back on the Virtual Machine, open wf.msc. Click "Windows Defender Firewall Prope
 <img src="https://i.imgur.com/jizfBkG.png" alt="VM Access Pt7"/><br/>
 <img src="https://i.imgur.com/o0iDu6L.png" alt="VM Access Pt8"/><br/>
 <img src="https://i.imgur.com/2iYlw7S.png" alt="VM Access Pt9"/><br/>
+ <br />
+<br />
 </p>
 
 <hr>
@@ -122,6 +132,8 @@ Grab the PowerShell script in this repository that we will use for logging acces
  Visit ipgeolocation.io and sign up for an account. Once logged in, visi the dashboard to find your API key and paste it into the script. Start the script. <br/>
  <img src="https://i.imgur.com/ErSJke6.png" alt="PowerShell Setup Pt3"/><br/>
  <img src="https://i.imgur.com/z139bw1.png" alt="PowerShell Setup Pt4"/><br/>
+ <br />
+<br />
 </p>
 
 <hr>
@@ -154,6 +166,8 @@ FAILED_RDP_WITH_GEO_CL
 | extend latitude_CF = tostring(CSVFields[0])
 | summarize event_count=count() by source_CF, tostring(latitude_CF), tostring(longitude_CF), country_CF, label_CF, dest_CF
 ```
+<br />
+<br />
   </p>
 
  <hr>
